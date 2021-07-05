@@ -36,6 +36,42 @@ class BST:
         print('Depth: {depth}, Value: {value}'.format(depth=self.depth, value=self.value))
         if self.right:
             self.right.depth_first_traversal()
+
+    def getting_path(self, value, path=None):
+        if value == self.value:
+            result_list = [path, value]
+            return result_list
+        elif self.left and value < self.value:
+            return self.left.getting_path(value, self.left)
+            
+        elif self.right and value >= self.value:
+            return self.right.getting_path(value, self.right)
+        
+        else:
+            return None 
+
+    def delete_path(self, cur_path=None, path=None):
+        path_to_delete = path
+        value = path_to_delete[-1]
+        
+        if self.right.value == value:
+            self.right = None 
+            return
+        elif self.left.value == value:
+            self.left = None 
+            return
+        else:
+            if value == self.value:
+                return 
+            elif self.left and value < self.value:
+                self.left.delete_path(self.left, path)
+            elif self.right and value >= self.value:
+                self.right.delete_path(self.right, path)
+            
+            
+     
+    
+        
     
 
 ## Test ##
@@ -47,4 +83,11 @@ test.insert(4)
 test.insert(5)
 
 print(test.get_node_by_value(4))
+
+first_part = test.getting_path(5)
+print(first_part)
+#test.delete_path(path=first_part)
+
 test.depth_first_traversal()
+
+## ##
