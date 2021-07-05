@@ -54,10 +54,10 @@ class BST:
         path_to_delete = path
         value = path_to_delete[-1]
         
-        if self.right.value == value:
+        if not self.right == None and self.right.value == value:
             self.right = None 
             return
-        elif self.left.value == value:
+        elif not self.left == None and self.left.value == value:
             self.left = None 
             return
         else:
@@ -86,7 +86,7 @@ print(test.get_node_by_value(4))
 
 first_part = test.getting_path(5)
 print(first_part)
-#test.delete_path(path=first_part)
+test.delete_path(path=first_part)
 
 test.depth_first_traversal()
 
