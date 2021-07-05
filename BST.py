@@ -75,7 +75,13 @@ class BST:
             if self.left == None:
                 self.left = BST(new_value, self.depth + 1)
                 if self.right == None:
-                    right_val = int(input('Please enter a value that is greater than {parent}: '.format(parent=self.value)))
+                    
+                    while True:
+                        right_val = int(input('Please enter a value that is greater than {parent}: '.format(parent=self.value)))
+                        if right_val < self.value:
+                            print("That value is not valid")    
+                        else:
+                            break
                     self.right = BST(right_val, self.depth + 1)
             else:
                 self.left.insert_balance(new_value)
@@ -83,7 +89,13 @@ class BST:
             if self.right == None:
                 self.right = BST(new_value, self.depth + 1)
                 if self.left == None:
-                    left_val = int(input("Please enter a value that is less than {parent}: ".format(parent=self.value)))
+                    
+                    while True:
+                        left_val = int(input("Please enter a value that is less than {parent}: ".format(parent=self.value)))
+                        if left_val > self.value:
+                            print('That value is not valid')
+                        else:
+                            break 
                     self.left = BST(new_value, self.depth + 1)
             else:
                 self.right.insert_balance(new_value)      
