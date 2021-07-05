@@ -1,4 +1,4 @@
- BST Functions/Algorithms 
+# BST Functions/Algorithms 
  
 Extra Functions and Algorithms for Binary Search Tree 🔍🌳
 
