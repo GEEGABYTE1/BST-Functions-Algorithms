@@ -1,3 +1,4 @@
+
 class BST:
     def __init__(self, value, depth=1):
         self.value = value 
@@ -67,6 +68,28 @@ class BST:
                 self.left.delete_path(self.left, path)
             elif self.right and value >= self.value:
                 self.right.delete_path(self.right, path)
+
+    
+    def insert_balance(self, new_value):
+        if new_value < self.value:
+            if self.left == None:
+                self.left = BST(new_value, self.depth + 1)
+                if self.right == None:
+                    right_val = int(input('Please enter a value that is greater than {parent}: '.format(parent=self.value)))
+                    self.right = BST(right_val, self.depth + 1)
+            else:
+                self.left.insert_balance(new_value)
+        else:
+            if self.right == None:
+                self.right = BST(new_value, self.depth + 1)
+                if self.left == None:
+                    left_val = int(input("Please enter a value that is less than {parent}: ".format(parent=self.value)))
+                    self.left = BST(new_value, self.depth + 1)
+            else:
+                self.right.insert_balance(new_value)      
+
+
+    
             
             
      
@@ -74,20 +97,3 @@ class BST:
         
     
 
-## Test ##
-
-test = BST(1)
-test.insert(2)
-test.insert(3)
-test.insert(4)
-test.insert(5)
-
-print(test.get_node_by_value(4))
-
-first_part = test.getting_path(5)
-print(first_part)
-test.delete_path(path=first_part)
-
-test.depth_first_traversal()
-
-## ##
